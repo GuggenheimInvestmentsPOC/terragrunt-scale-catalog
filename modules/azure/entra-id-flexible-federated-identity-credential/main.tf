@@ -20,10 +20,7 @@ resource "null_resource" "flexible_federated_identity_credential" {
   provisioner "local-exec" {
     when    = create
     command = <<EOT
-      az rest --method post \
-              --url 'https://graph.microsoft.com/beta${self.triggers.application_id}/federatedIdentityCredentials' \
-              --headers 'Content-Type=application/json' \
-              --body "${replace(self.triggers.body_json, "\"", "\\\"")}"
+      az rest --method post --url 'https://graph.microsoft.com/beta${self.triggers.application_id}/federatedIdentityCredentials' --headers 'Content-Type=application/json' --body "${replace(self.triggers.body_json, "\"", "\\\"")}"
     EOT
   }
 
@@ -31,13 +28,10 @@ resource "null_resource" "flexible_federated_identity_credential" {
     when    = destroy
     command = <<EOT
       CREDENTIAL_ID=$(
-        az rest --method get \
-          --url 'https://graph.microsoft.com/beta${self.triggers.application_id}/federatedIdentityCredentials' \
-          --query "value[?name=='${self.triggers.display_name}'].id" -o tsv
+        az rest --method get --url 'https://graph.microsoft.com/beta${self.triggers.application_id}/federatedIdentityCredentials' --query "value[?name=='${self.triggers.display_name}'].id" -o tsv
       )
 
-      az rest --method delete \
-        --url "https://graph.microsoft.com/beta${self.triggers.application_id}/federatedIdentityCredentials/$CREDENTIAL_ID"
+      az rest --method delete --url "https://graph.microsoft.com/beta${self.triggers.application_id}/federatedIdentityCredentials/$CREDENTIAL_ID"
     EOT
   }
 }
