@@ -20,7 +20,7 @@ resource "null_resource" "flexible_federated_identity_credential" {
   provisioner "local-exec" {
     when    = create
     command = <<EOT
-      az rest --method post --url 'https://graph.microsoft.com/beta${self.triggers.application_id}/federatedIdentityCredentials' --headers 'Content-Type=application/json' --body "${replace(self.triggers.body_json, "\"", "\\\"")}"
+      az rest --method post --url 'https://graph.microsoft.com/beta/applications/f6d9593e-f9f8-4d9d-a1e9-52c5772f20e6/federatedIdentityCredentials' --headers 'Content-Type=application/json' --body "{\"audiences\":[\"api://AzureADTokenExchange\"],\"claimsMatchingExpression\":{\"languageVersion\":1,\"value\":\"claims['sub'] matches 'repo:GuggenheimInvestmentsPOC/IT-IaC-Azure:*'\"},\"issuer\":\"https://token.actions.githubusercontent.com\",\"name\":\"pipelines-plan\"}"
     EOT
   }
 
