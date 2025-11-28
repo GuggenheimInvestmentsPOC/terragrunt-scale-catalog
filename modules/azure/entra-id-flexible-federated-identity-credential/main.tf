@@ -10,6 +10,11 @@ locals {
   }
 }
 
+# RAN MANUALLY
+#az rest --method post --url 'https://graph.microsoft.com/beta/applications/f6d9593e-f9f8-4d9d-a1e9-52c5772f20e6/federatedIdentityCredentials' 
+#	--headers 'Content-Type=application/json' 
+#	--body "{'audiences':['api://AzureADTokenExchange'],'claimsMatchingExpression':{'languageVersion':1,'value':'claims[\'sub\'] matches \'repo:GuggenheimInvestmentsPOC/IT-IaC-Azure:*\''},'issuer':'https://token.actions.githubusercontent.com','name':'pipelines-plan'}"
+
 resource "null_resource" "flexible_federated_identity_credential" {
   triggers = {
     application_id = var.application_id
