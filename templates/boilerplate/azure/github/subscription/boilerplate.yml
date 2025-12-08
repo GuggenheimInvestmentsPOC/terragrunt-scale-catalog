@@ -33,7 +33,7 @@ variables:
   - name: OIDCResourcePrefix
     type: string
     description: The prefix for the OIDC resources you using to bootstrap Pipelines.
-    default: "pipelines_prod"
+    default: "pipelines"
     order: 6
 
   - name: Issuer
