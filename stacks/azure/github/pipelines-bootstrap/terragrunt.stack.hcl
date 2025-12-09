@@ -165,20 +165,20 @@ unit "plan_service_principal" {
 #   }
 # }
 
-unit "plan_custom_role_definition" {
-  source = "${local.terragrunt_scale_catalog_url}//units/azure/oidc/custom-role-definition?ref=${local.terragrunt_scale_catalog_ref}"
-  path   = "oidc/plan/custom-role-definition"
+# unit "plan_custom_role_definition" {
+#   source = "${local.terragrunt_scale_catalog_url}//units/azure/oidc/custom-role-definition?ref=${local.terragrunt_scale_catalog_ref}"
+#   path   = "oidc/plan/custom-role-definition"
 
-  values = {
-    base_url = local.terragrunt_scale_catalog_url
-    ref      = local.terragrunt_scale_catalog_ref
+#   values = {
+#     base_url = local.terragrunt_scale_catalog_url
+#     ref      = local.terragrunt_scale_catalog_ref
 
-    name        = "${local.oidc_resource_prefix}-plan-custom-role"
-    description = "Custom role for Gruntwork Pipelines plan service principal with read-only permissions"
+#     name        = "${local.oidc_resource_prefix}-plan-custom-role"
+#     description = "Custom role for Gruntwork Pipelines plan service principal with read-only permissions"
 
-    actions = local.plan_custom_role_actions
-  }
-}
+#     actions = local.plan_custom_role_actions
+#   }
+# }
 
 unit "plan_service_principal_to_plan_custom_role_assignment" {
   source = "${local.terragrunt_scale_catalog_url}//units/azure/oidc/service-principal-to-sub-role-assignment?ref=${local.terragrunt_scale_catalog_ref}"
@@ -259,20 +259,20 @@ unit "apply_federated_identity_credential" {
   }
 }
 
-unit "apply_custom_role_definition" {
-  source = "${local.terragrunt_scale_catalog_url}//units/azure/oidc/custom-role-definition?ref=${local.terragrunt_scale_catalog_ref}"
-  path   = "oidc/apply/custom-role-definition"
+# unit "apply_custom_role_definition" {
+#   source = "${local.terragrunt_scale_catalog_url}//units/azure/oidc/custom-role-definition?ref=${local.terragrunt_scale_catalog_ref}"
+#   path   = "oidc/apply/custom-role-definition"
 
-  values = {
-    base_url = local.terragrunt_scale_catalog_url
-    ref      = local.terragrunt_scale_catalog_ref
+#   values = {
+#     base_url = local.terragrunt_scale_catalog_url
+#     ref      = local.terragrunt_scale_catalog_ref
 
-    name        = "${local.oidc_resource_prefix}-apply-custom-role"
-    description = "Custom role for Gruntwork Pipelines apply service principal with deployment permissions"
+#     name        = "${local.oidc_resource_prefix}-apply-custom-role"
+#     description = "Custom role for Gruntwork Pipelines apply service principal with deployment permissions"
 
-    actions = local.apply_custom_role_actions
-  }
-}
+#     actions = local.apply_custom_role_actions
+#   }
+# }
 
 unit "apply_service_principal_to_apply_custom_role_assignment" {
   source = "${local.terragrunt_scale_catalog_url}//units/azure/oidc/service-principal-to-sub-role-assignment?ref=${local.terragrunt_scale_catalog_ref}"
