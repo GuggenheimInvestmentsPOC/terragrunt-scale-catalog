@@ -145,25 +145,25 @@ unit "plan_service_principal" {
   }
 }
 
-# unit "plan_flexible_federated_identity_credential" {
-#   source = "${local.terragrunt_scale_catalog_url}//units/azure/oidc/entra-id-flexible-federated-identity-credential?ref=${local.terragrunt_scale_catalog_ref}"
-#   path   = "oidc/plan/flexible-federated-identity-credential"
+unit "plan_flexible_federated_identity_credential" {
+  source = "${local.terragrunt_scale_catalog_url}//units/azure/oidc/entra-id-flexible-federated-identity-credential?ref=${local.terragrunt_scale_catalog_ref}"
+  path   = "oidc/plan/flexible-federated-identity-credential"
 
-#   values = {
-#     base_url = local.terragrunt_scale_catalog_url
-#     ref      = local.terragrunt_scale_catalog_ref
+  values = {
+    base_url = local.terragrunt_scale_catalog_url
+    ref      = local.terragrunt_scale_catalog_ref
 
-#     app_config_path = "../app"
+    app_config_path = "../app"
 
-#     display_name = "${local.oidc_resource_prefix}-plan"
-#     description  = "Entra ID flexible federated identity credential used by Gruntwork Pipelines for plans"
+    display_name = "${local.oidc_resource_prefix}-plan"
+    description  = "Entra ID flexible federated identity credential used by Gruntwork Pipelines for plans"
 
-#     audiences = local.audiences
-#     issuer    = local.issuer
+    audiences = local.audiences
+    issuer    = local.issuer
 
-#     claims_matching_expression_value = "claims['sub'] matches 'repo:${local.github_org_name}/${local.github_repo_name}:*'"
-#   }
-# }
+    claims_matching_expression_value = "claims['sub'] matches 'repo:${local.github_org_name}/${local.github_repo_name}:*'"
+  }
+}
 
 # unit "plan_custom_role_definition" {
 #   source = "${local.terragrunt_scale_catalog_url}//units/azure/oidc/custom-role-definition?ref=${local.terragrunt_scale_catalog_ref}"
